@@ -26,6 +26,15 @@ module.exports = {
                 test: /\.scss$/,
                 loader: 'style-loader!css-loader!autoprefixer-loader!sass-loader',
                 exclude: /node_modules/
+            },
+            {
+                test: /\.css$/,
+                loader: 'style-loader!css-loader!autoprefixer-loader',
+                exclude: /node_modules/
+            },
+            {
+                test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+                loader: 'url-loader?limit=100000'
             }
         ]
     },

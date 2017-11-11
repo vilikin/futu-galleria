@@ -8,7 +8,12 @@
   }
 
   header {
-    color: $color_primary;
     text-align: center;
+
+    h1 {
+      font-size: 4em;
+      font-family: 'Francois One', sans-serif;
+      color: $color_primary;
+    }
   }
 }

@@ -4,6 +4,8 @@ import {HashRouter, Route, Switch} from 'react-router-dom';
 import './App.scss';
 import {Provider} from "react-redux";
 
+import Gallery from "../Gallery/GalleryContainer";
+
 import {createEnhancedStore} from '../../store/init';
 
 const store = createEnhancedStore();
@@ -18,7 +20,7 @@ export class App extends React.Component {
 
                 <HashRouter>
                     <Switch>
-                        <Route exact path="/" render={() => <h2>Multiple items here</h2>}/>
+                        <Route exact path="/" component={Gallery}/>
                         <Route path="/picture/:id" render={() => <h2>One item here</h2>}/>
                     </Switch>
                 </HashRouter>

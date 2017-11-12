@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+// Import global stylesheet
 import './styles/global.scss';
 
 import App from "./components/App/App";

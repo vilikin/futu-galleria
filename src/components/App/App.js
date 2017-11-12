@@ -4,7 +4,7 @@ import {HashRouter, Route, Switch} from 'react-router-dom';
 import './App.scss';
 import {Provider} from "react-redux";
 
-import Gallery from "../Gallery/GalleryContainer";
+import Gallery from "../Gallery/Gallery";
 
 import {createEnhancedStore} from '../../store/init';
 

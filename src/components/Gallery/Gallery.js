@@ -1,19 +1,21 @@
 import React from 'react';
 import {pageOfPhotos} from "../../store/resources";
+import withResources from "../../services/withResources";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
-export class Gallery extends React.Component {
-    componentWillMount() {
-        this.props.fetchResource(pageOfPhotos(1));
-    }
-
+class Gallery extends React.Component {
     render() {
         return <div>
             Hello, this is gallery.
             <div>
-                {JSON.stringify(this.props.photos)}
+                {JSON.stringify(this.props)}
             </div>
         </div>;
     }
 }
 
-export default Gallery;
+const resources = {
+    photos: pageOfPhotos(1)
+};
+
+export default withResources(resources)(Gallery, LoadingSpinner);

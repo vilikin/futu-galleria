@@ -1,5 +1,16 @@
-import { makeActionCreator } from "../services/utils";
 import { get } from '../services/api';
+
+const makeActionCreator = (type, ...argNames) => {
+    return (...args) => {
+        let action = {type};
+
+        argNames.forEach((arg, index) => {
+            action[argNames[index]] = args[index];
+        });
+
+        return action;
+    };
+};
 
 export const SET_RESOURCE_READY = 'SET_RESOURCE_READY';
 export const SET_RESOURCE_FETCHING = 'SET_RESOURCE_FETCHING';

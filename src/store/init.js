@@ -1,6 +1,6 @@
-import {applyMiddleware, compose, createStore} from 'redux'
+import {applyMiddleware, combineReducers, compose, createStore} from 'redux'
 import thunk from 'redux-thunk';
-import reducer from './reducer';
+import {resourcesReducer} from './resources';
 
 // Enhanced createStore method for applying thunk middleware and using redux dev tools
 export const createEnhancedStore = (initialState = {}) => {
@@ -14,7 +14,9 @@ export const createEnhancedStore = (initialState = {}) => {
 
     // Returns the created store
     return createStore(
-        reducer,
+        combineReducers({
+            resources: resourcesReducer
+        }),
         initialState,
         composeEnhancers(
             applyMiddleware(...middleware)

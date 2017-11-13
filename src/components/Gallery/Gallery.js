@@ -14,8 +14,8 @@ class Gallery extends React.Component {
     }
 }
 
-const resources = {
-    photos: pageOfPhotos(1)
-};
+const resources =  (props) => ({
+    photos: pageOfPhotos(props.location.search.split("page=")[1])
+});
 
 export default withResources(resources)(Gallery, LoadingSpinner);

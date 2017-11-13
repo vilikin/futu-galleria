@@ -1,0 +1,15 @@
+@import '../../styles/colors';
+
+
+.image-card {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  text-align: center;
+  margin: 20px;
+  transition: all 0.2s ease-out;
+}
+
+.image-card:hover {
+  transform: scale(1.2);
+}

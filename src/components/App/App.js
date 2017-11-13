@@ -1,5 +1,5 @@
 import React from 'react';
-import {HashRouter, Route, Switch} from 'react-router-dom';
+import {HashRouter, Link, Route, Switch} from 'react-router-dom';
 
 import './App.scss';
 import {Provider} from "react-redux";
@@ -7,24 +7,28 @@ import {Provider} from "react-redux";
 import Gallery from "../Gallery/Gallery";
 
 import {createEnhancedStore} from '../../store/init';
+import ImageView from "../ImageView/ImageView";
 
 const store = createEnhancedStore();
 
 export class App extends React.Component {
     render() {
         return <Provider store={store}>
-            <div className="App_component container">
-                <header>
-                    <h1>Futu Gallery</h1>
-                </header>
+            <HashRouter>
+                <div className="App_component container">
+                    <header>
+                        <Link to="/">
+                            <h1>Placeholders</h1>
+                        </Link>
+                        <hr/>
+                    </header>
 
-                <HashRouter>
                     <Switch>
                         <Route exact path="/" component={Gallery}/>
-                        <Route path="/picture/:id" render={() => <h2>One item here</h2>}/>
+                        <Route path="/photos/:id" component={ImageView}/>
                     </Switch>
-                </HashRouter>
-            </div>
+                </div>
+            </HashRouter>
         </Provider>
     }
 }

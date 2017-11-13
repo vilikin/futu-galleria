@@ -15,5 +15,14 @@
       font-family: 'Francois One', sans-serif;
       color: $color_primary;
     }
+
+    a:hover, a:active, a:focus {
+      text-decoration: none;
+    }
+
+    hr {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
   }
 }

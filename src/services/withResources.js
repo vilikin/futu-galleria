@@ -4,6 +4,17 @@ import {fetchResource} from "../store/actions";
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 import ErrorScreen from "../components/ErrorScreen/ErrorScreen";
 
+const defaultOptions = {
+    // When set to true, passes 'loaded' and 'error' props to the wrapped component
+    passStatusAsProps: false,
+    // When set to true, renders loading component instead of the wrapped component
+    // if resources are still being loaded
+    showLoadingComponent: true,
+    // When set to true, renders error component instead of the wrapped component
+    // if error occurred during resource loading
+    showErrorComponent: true
+};
+
 /**
  * Returns a function that returns higher order component (HOC).
  *
@@ -30,7 +41,7 @@ import ErrorScreen from "../components/ErrorScreen/ErrorScreen";
  * You can also provide custom loading indicator and error component to be displayed when
  * the resource is not (yet) available.
  */
-export const withResources = (requestedResources) => {
+export const withResources = (requestedResources, options = defaultOptions) => {
     return (WrappedComponent, LoadingComponent = LoadingSpinner, ErrorComponent = ErrorScreen) => {
         class WithResources extends React.Component {
             constructor(props) {
@@ -67,6 +78,8 @@ export const withResources = (requestedResources) => {
              * Returns a plain resources-object.
              */
             getRequestedResources = (props) => {
+                console.log(props);
+
                 if (typeof requestedResources === 'function') {
                     return requestedResources(props);
                 } else {
@@ -117,41 +130,47 @@ export const withResources = (requestedResources) => {
              *
              * Renders LoadingComponent if fetching is still in progress, or ErrorComponent if
              * any errors occurred while fetching.
+             *
+             * Can be toggled with options to not swap between components on resource state changes.
              */
             render() {
                 let props = {...this.props},
                     errorOccurred = false,
-                    allLoaded = true;
+                    fetching = false;
 
                 // We do not want to leak these internal props to the wrapped component.
 
                 delete props.availableResources;
-                delete props.fetchResource;
 
                 this.forEachRequestedResource((resourceKey, resourceObject, resourceFromStore) => {
-                    if (resourceFromStore && !resourceFromStore.fetching && resourceFromStore.data) {
-                        // If resource is available in store, add it to the props that will be
-                        // passed to the WrappedComponent
-                        props[resourceKey] = resourceFromStore.data;
-                    } else if (resourceFromStore && resourceFromStore.error) {
-                        // If there were any errors, set a flag that all resources were not yet
-                        // loaded and errors occurred
+                    // Add resource to the props that will be passed on to the WrappedComponent
+                    props[resourceKey] = resourceFromStore ? resourceFromStore.data : null;
+
+                    if (resourceFromStore && resourceFromStore.error) {
+                        // If there were any errors, set a flag that error occurred
                         errorOccurred = true;
-                        allLoaded = false;
-                    } else {
-                        // If component is not yet available in store, set a flag that all
-                        // resources are not yet loaded
-                        allLoaded = false;
+                    }
+
+                    if (!resourceFromStore || resourceFromStore.fetching) {
+                        // If component is not yet available in store, set a flag that it is still fetching
+                        fetching = true;
                     }
                 });
 
-                return allLoaded ?
-                    <WrappedComponent {...props}/>
-                    :
-                    errorOccurred ?
-                        <ErrorComponent/>
-                        :
-                        <LoadingComponent/>;
+                if (options.passStatusAsProps) {
+                    props.fetching = fetching;
+                    props.error = errorOccurred;
+                }
+
+                let componentToDisplay = <WrappedComponent {...props}/>;
+
+                if (errorOccurred && options.showErrorComponent) {
+                    componentToDisplay = <ErrorComponent/>;
+                } else if (fetching && options.showLoadingComponent) {
+                    componentToDisplay = <LoadingComponent/>;
+                }
+
+                return componentToDisplay;
             }
         }
 
@@ -161,7 +180,7 @@ export const withResources = (requestedResources) => {
         });
 
         // We also give access to fetchResource action
-        return connect(mapStateToProps, {fetchResource})(WithResources);
+        return connect(mapStateToProps, { fetchResource })(WithResources);
     }
 };
 

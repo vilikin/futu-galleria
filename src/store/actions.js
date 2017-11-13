@@ -20,7 +20,7 @@ const setResourceReady = makeActionCreator(SET_RESOURCE_READY, 'id', 'data');
 const setResourceFetching = makeActionCreator(SET_RESOURCE_FETCHING, 'id');
 const setResourceError = makeActionCreator(SET_RESOURCE_ERROR, 'id');
 
-export const fetchResource = (resource) => async (dispatch) => {
+export const fetchResource = (resource) => async (dispatch, getState) => {
     if (!resource.path || !resource.id) {
         console.error("Attempted to call fetchResource action without a valid resource object");
         return;
@@ -31,7 +31,14 @@ export const fetchResource = (resource) => async (dispatch) => {
     try {
         const response = await get(resource.path);
 
-        dispatch(setResourceReady(resource.id, response));
+        const currentData = getState().resources[resource.id].data || [];
+
+        const data = resource.customStateModifier ?
+            resource.customStateModifier(currentData, response)
+            :
+            response;
+
+        dispatch(setResourceReady(resource.id, data));
     } catch (err) {
         console.error("Failed to fetch requested resource!");
 

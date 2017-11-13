@@ -6,9 +6,15 @@ import {
     SET_RESOURCE_READY
 } from "./actions";
 
-export const pageOfPhotos = (page) => ({
-    path: `/photos?_limit=${config.photosPerPage}&_page=${page}`,
-    id: `photos_page_${page}`
+let nextPage = 1;
+
+export const pageOfPhotos = () => ({
+    path: `/photos?_limit=${config.photosPerPage}&_page=${nextPage}`,
+    id: `photos`,
+    customStateModifier: (state, result)  => {
+        nextPage += 1;
+        return [...state, ...result];
+    }
 });
 
 export const singlePhoto = (id) => ({
@@ -22,8 +28,8 @@ export const resourcesReducer = (state = {}, action) => {
             return {
                 ...state,
                 [action.id]: {
+                    ...state[action.id],
                     fetching: true,
-                    data: null,
                     error: false
                 }
             };

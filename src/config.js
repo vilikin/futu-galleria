@@ -5,5 +5,5 @@ export default {
     api: 'https://jsonplaceholder.typicode.com',
 
     // Limit of photos displayed on a single page
-    photosPerPage: 20
+    photosPerPage: 36
 }

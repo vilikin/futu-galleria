@@ -1,0 +1,22 @@
+.image-view {
+  text-align: center;
+
+  animation: fadeIn;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

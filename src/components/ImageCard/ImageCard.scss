@@ -15,5 +15,7 @@
 }
 
 .image-card:hover {
-  transform: scale(1.2);
+  @media (min-width: 501px) {
+    transform: scale(1.2);
+  }
 }

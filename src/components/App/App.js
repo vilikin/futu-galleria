@@ -13,9 +13,13 @@ import NavBar from "../NavBar/NavBar";
 const store = createEnhancedStore();
 
 export class App extends React.Component {
+    handleRouteChange() {
+        window.scrollTo(0,0);
+    }
+
     render() {
         return <Provider store={store}>
-            <HashRouter>
+            <HashRouter onChange={this.handleRouteChange}>
                 <div>
                     <NavBar title="The Futu Gallery"/>
 

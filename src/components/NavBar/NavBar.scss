@@ -1,0 +1,19 @@
+@import '../../styles/colors';
+
+.top-bar {
+  background-color: #2a2a2a;
+  padding: 15px 0;
+  text-align: center;
+  margin-bottom: 20px;
+  border-bottom: 3px solid $color_primary;
+
+  .title {
+    color: #E8E8EB;
+    font-size: 24px;
+    font-family: "Francois One", sans-serif;
+  }
+
+  a:hover, a:focus, a:active {
+    text-decoration: none;
+  }
+}

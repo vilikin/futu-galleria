@@ -1,28 +1,7 @@
 @import '../../styles/colors';
 
 .App_component {
-  min-height: 100vh;
-
   @media (min-width: 992px) {
     width: 800px;
-  }
-
-  header {
-    text-align: center;
-
-    h1 {
-      font-size: 4em;
-      font-family: 'Francois One', sans-serif;
-      color: $color_primary;
-    }
-
-    a:hover, a:active, a:focus {
-      text-decoration: none;
-    }
-
-    hr {
-      margin-left: 20px;
-      margin-right: 20px;
-    }
   }
 }

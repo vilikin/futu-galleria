@@ -1,3 +1,5 @@
+@import '../../styles/colors';
+
 .gallery {
   text-align: center;
 
@@ -8,5 +10,15 @@
   .fade-enter.fade-enter-active {
     opacity: 1;
     transition: all 1000ms ease-in;
+  }
+
+  header {
+    text-align: center;
+
+    h1 {
+      font-size: 4em;
+      font-family: 'Francois One', sans-serif;
+      color: $color_primary;
+    }
   }
 }

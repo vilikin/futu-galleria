@@ -8,6 +8,10 @@
   text-align: center;
   margin: 20px;
   transition: all 0.2s ease-out;
+
+  @media (max-width: 500px) {
+    margin: 5px;
+  }
 }
 
 .image-card:hover {

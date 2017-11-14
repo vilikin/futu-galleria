@@ -10,3 +10,17 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
+.button {
+  cursor: pointer;
+  font-family: "Francois One", sans-serif;
+  font-size: 18px;
+
+  color: $color_primary;
+  transition: color 0.5s;
+}
+
+.button:hover, .button:active, .button:focus {
+  color: darken($color_primary, 10);
+  text-decoration: none;
+}

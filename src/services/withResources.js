@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {fetchResource} from "../store/resources";
+import {fetchResource} from "../store/actions";
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 import ErrorScreen from "../components/ErrorScreen/ErrorScreen";
 
@@ -112,7 +112,7 @@ export const withResources = (requestedResources, options = defaultOptions) => {
 
                 if (JSON.stringify(nextRequestedResources) !== JSON.stringify(previousRequestedResources)) {
                     this.resources = nextRequestedResources;
-
+                    console.log("modification!");
                     this.fetchRequestedResources();
                 }
             }

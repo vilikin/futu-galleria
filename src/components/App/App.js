@@ -9,11 +9,13 @@ import Gallery from "../Gallery/Gallery";
 import {createEnhancedStore} from '../../store/init';
 import ImageView from "../ImageView/ImageView";
 import NavBar from "../NavBar/NavBar";
+import {albums, users} from "../../store/resources";
+import {fetchResource} from "../../store/actions";
 
 const store = createEnhancedStore();
 
-// When hash changes (navigation event), always scroll page to the top.
-window.addEventListener("hashchange", () => window.scrollTo(0, 0));
+store.dispatch(fetchResource(users()));
+store.dispatch(fetchResource(albums()));
 
 export class App extends React.Component {
     render() {

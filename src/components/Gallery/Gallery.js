@@ -1,5 +1,5 @@
 import React from 'react';
-import {pageOfPhotos, singlePhoto} from "../../store/resources";
+import {photosFromAlbum} from "../../store/resources";
 import withResources from "../../services/withResources";
 import {ImageCard} from "../ImageCard/ImageCard";
 
@@ -23,14 +23,10 @@ class Gallery extends React.Component {
         const endPos = this.refs.end.getBoundingClientRect().top;
 
         if (this.possibleToLoadMore && endPos - 50 <= window.innerHeight) {
-            this.loadMore();
+            this.props.fetchResource(photosFromAlbum(1));
 
             this.preventLoadingFor(1000);
         }
-    };
-
-    loadMore = () => {
-        this.props.fetchResource(pageOfPhotos());
     };
 
     preventLoadingFor = (ms) => {
@@ -67,7 +63,7 @@ class Gallery extends React.Component {
 }
 
 const resources = (props) => ({
-    photos: pageOfPhotos()
+    photos: photosFromAlbum(1)
 });
 
 export default withResources(resources, {

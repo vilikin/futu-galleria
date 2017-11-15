@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {fetchResource} from "../store/actions";
+import {fetchResource} from "../store/resources";
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 import ErrorScreen from "../components/ErrorScreen/ErrorScreen";
 
@@ -78,8 +78,6 @@ export const withResources = (requestedResources, options = defaultOptions) => {
              * Returns a plain resources-object.
              */
             getRequestedResources = (props) => {
-                console.log(props);
-
                 if (typeof requestedResources === 'function') {
                     return requestedResources(props);
                 } else {

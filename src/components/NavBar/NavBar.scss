@@ -1,11 +1,11 @@
 @import '../../styles/colors';
 
 .top-bar {
-  background-color: #2a2a2a;
+  background-color: $color_primary;
   padding: 15px 0;
   text-align: center;
   margin-bottom: 20px;
-  border-bottom: 3px solid $color_primary;
+  border-bottom: 3px solid darken($color_primary, 10);
 
   .title {
     color: #E8E8EB;

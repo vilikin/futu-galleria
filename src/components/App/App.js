@@ -12,11 +12,10 @@ import NavBar from "../NavBar/NavBar";
 
 const store = createEnhancedStore();
 
-export class App extends React.Component {
-    handleRouteChange() {
-        window.scrollTo(0,0);
-    }
+// When hash changes (navigation event), always scroll page to the top.
+window.addEventListener("hashchange", () => window.scrollTo(0, 0));
 
+export class App extends React.Component {
     render() {
         return <Provider store={store}>
             <HashRouter onChange={this.handleRouteChange}>

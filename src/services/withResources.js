@@ -118,6 +118,17 @@ export const withResources = (requestedResources, options = defaultOptions) => {
             }
 
             /**
+             * Loads next page of all paginated resources.
+             */
+            loadNextPage = () => {
+                this.forEachRequestedResource((resourceKey, resourceObject) => {
+                    if (resourceObject.pagination) {
+                        this.props.fetchResource(resourceObject);
+                    }
+                });
+            };
+
+            /**
              * Determines which of the three components to render:
              *      - WrappedComponent
              *      - LoadingComponent
@@ -140,6 +151,9 @@ export const withResources = (requestedResources, options = defaultOptions) => {
 
                 delete props.availableResources;
 
+                // Give WrappedComponent access to loadNextPage function
+                props.loadNextPage = this.loadNextPage;
+
                 this.forEachRequestedResource((resourceKey, resourceObject, resourceFromStore) => {
                     // Add resource to the props that will be passed on to the WrappedComponent
                     props[resourceKey] = resourceFromStore ? resourceFromStore.data : null;
@@ -160,12 +174,14 @@ export const withResources = (requestedResources, options = defaultOptions) => {
                     props.error = errorOccurred;
                 }
 
-                let componentToDisplay = <WrappedComponent {...props}/>;
+                let componentToDisplay;
 
                 if (errorOccurred && options.showErrorComponent) {
                     componentToDisplay = <ErrorComponent/>;
                 } else if (fetching && options.showLoadingComponent) {
                     componentToDisplay = <LoadingComponent/>;
+                } else {
+                    componentToDisplay = <WrappedComponent {...props}/>
                 }
 
                 return componentToDisplay;

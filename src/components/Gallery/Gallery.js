@@ -1,7 +1,8 @@
 import React from 'react';
-import {photosFromAlbum} from "../../store/resources";
+import {allPhotos, photosFromAlbum} from "../../store/resources";
 import withResources from "../../services/withResources";
 import {ImageCard} from "../ImageCard/ImageCard";
+import PropTypes from 'prop-types';
 
 import './Gallery.scss';
 import {CSSTransition, TransitionGroup} from "react-transition-group";
@@ -23,7 +24,7 @@ class Gallery extends React.Component {
         const endPos = this.refs.end.getBoundingClientRect().top;
 
         if (this.possibleToLoadMore && endPos - 50 <= window.innerHeight) {
-            this.props.fetchResource(photosFromAlbum(1));
+            this.props.loadNextPage();
 
             this.preventLoadingFor(1000);
         }
@@ -62,8 +63,14 @@ class Gallery extends React.Component {
     }
 }
 
+Gallery.propTypes = {
+    showAll: PropTypes.bool,
+    photos: PropTypes.array,
+    fetching: PropTypes.bool
+};
+
 const resources = (props) => ({
-    photos: photosFromAlbum(1)
+    photos: props.showAll ? allPhotos() : photosFromAlbum(props.match.params.albumId)
 });
 
 export default withResources(resources, {

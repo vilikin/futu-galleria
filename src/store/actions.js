@@ -9,6 +9,12 @@ const setResourceReady = makeActionCreator(SET_RESOURCE_READY, 'id', 'data', 'pa
 const setResourceFetching = makeActionCreator(SET_RESOURCE_FETCHING, 'id');
 const setResourceError = makeActionCreator(SET_RESOURCE_ERROR, 'id');
 
+/**
+ * Fetches the given resource and updates store with status of the fetching.
+ * Each time this is called for resource with pagination, next page is fetched.
+ *
+ * @param resource object to be fetched
+ */
 export const fetchResource = (resource) => async (dispatch, getState) => {
     if (!resource.path || !resource.id) {
         console.error("Attempted to call fetchResource action without a valid resource object");

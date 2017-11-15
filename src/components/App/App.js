@@ -26,8 +26,9 @@ export class App extends React.Component {
 
                     <div className="App_component container">
                         <Switch>
-                            <Route exact path="/" component={Gallery}/>
-                            <Route path="/photos/:id" component={ImageView}/>
+                            <Route exact path="/albums/:albumId" component={Gallery}/>
+                            <Route exact path="/all" render={() => <Gallery showAll/>}/>
+                            <Route path="/photos/:photoId" component={ImageView}/>
                         </Switch>
                     </div>
                 </div>

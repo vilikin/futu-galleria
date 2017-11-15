@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-
+import PropTypes from 'prop-types';
 import './NavBar.scss';
 
 export const NavBar = ({title}) => (
@@ -10,5 +10,9 @@ export const NavBar = ({title}) => (
         </Link>
     </header>
 );
+
+NavBar.propTypes = {
+    title: PropTypes.string.isRequired
+};
 
 export default NavBar;

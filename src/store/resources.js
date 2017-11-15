@@ -13,6 +13,12 @@ export const photosFromAlbum = (albumId) => ({
     pagination: true
 });
 
+export const allPhotos = () => ({
+    path: `/photos?_limit=${config.photosPerPage}&_page={page}`,
+    id: 'all_photos',
+    pagination: true
+});
+
 export const singlePhoto = (id) => ({
     path: '/photos/' + id,
     id: 'photo_' + id,

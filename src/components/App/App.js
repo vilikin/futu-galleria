@@ -12,11 +12,9 @@ import NavBar from "../NavBar/NavBar";
 import {albums, users} from "../../store/resources";
 import {fetchResource} from "../../store/actions";
 import UsersView from "../UsersView/UsersView";
+import UserProfileView from "../UserProfileView/UserProfileView";
 
 const store = createEnhancedStore();
-
-store.dispatch(fetchResource(users()));
-store.dispatch(fetchResource(albums()));
 
 export class App extends React.Component {
     render() {
@@ -28,6 +26,7 @@ export class App extends React.Component {
                     <div className="App_component container">
                         <Switch>
                             <Route exact path="/" component={UsersView}/>
+                            <Route exact path="/users/:userId" component={UserProfileView}/>
                             <Route exact path="/albums/:albumId" component={GalleryView}/>
                             <Route exact path="/all" render={() => <GalleryView showAll/>}/>
                             <Route exact path="/photos/:photoId" component={ImageView}/>

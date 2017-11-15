@@ -1,0 +1,41 @@
+.user-profile-view {
+  .header {
+    display: flex;
+    align-items: center;
+
+    .details {
+      flex: 1;
+
+      .username {
+        margin: 0;
+      }
+
+      .name {
+        font-size: 20px;
+      }
+    }
+
+    .profile-picture {
+      background-image: url('http://www.planystech.com/wp-content/uploads/2017/03/profile-placeholder.jpg');
+      background-size: contain;
+      width: 100px;
+      height: 100px;
+      margin-right: 20px;
+    }
+  }
+
+  .album {
+    font-size: 18px;
+    margin: 8px 0;
+    text-transform: capitalize;
+
+    .icon {
+      margin-right: 15px;
+    }
+  }
+
+  .links {
+    text-align: center;
+    margin-top: 30px;
+  }
+}

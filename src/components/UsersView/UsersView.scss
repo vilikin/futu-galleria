@@ -10,7 +10,7 @@
     border-radius: 4px;
     cursor: pointer;
 
-    .photo {
+    .profile-picture {
       background-image: url('http://www.planystech.com/wp-content/uploads/2017/03/profile-placeholder.jpg');
       background-size: contain;
       width: 100px;
@@ -20,7 +20,6 @@
 
     .details {
       flex: 1;
-      font-family: "Francois One", sans-serif;
 
       .username {
         display: block;

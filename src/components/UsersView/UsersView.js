@@ -16,7 +16,7 @@ class UsersView extends React.Component {
                          key={user.id}
                          onClick={this.viewUser.bind(this, user.id)}
                     >
-                        <div className="photo"/>
+                        <div className="profile-picture"/>
 
                         <div className="details">
                             <span className="username">{user.username}</span>

@@ -4,12 +4,12 @@ import withResources from "../../services/withResources";
 import {ImageCard} from "../ImageCard/ImageCard";
 import PropTypes from 'prop-types';
 
-import './Gallery.scss';
+import './GalleryView.scss';
 import {CSSTransition, TransitionGroup} from "react-transition-group";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import {Link} from "react-router-dom";
 
-class Gallery extends React.Component {
+class GalleryView extends React.Component {
     componentDidMount() {
         this.possibleToLoadMore = true;
 
@@ -63,7 +63,7 @@ class Gallery extends React.Component {
     }
 }
 
-Gallery.propTypes = {
+GalleryView.propTypes = {
     showAll: PropTypes.bool,
     photos: PropTypes.array,
     fetching: PropTypes.bool
@@ -76,4 +76,4 @@ const resources = (props) => ({
 export default withResources(resources, {
     passStatusAsProps: true,
     showLoadingComponent: false
-})(Gallery, null, null);
+})(GalleryView, null, null);

@@ -4,7 +4,7 @@ import {HashRouter, Link, Route, Switch} from 'react-router-dom';
 import './App.scss';
 import {Provider} from "react-redux";
 
-import Gallery from "../Gallery/Gallery";
+import GalleryView from "../GalleryView/GalleryView";
 
 import {createEnhancedStore} from '../../store/init';
 import ImageView from "../ImageView/ImageView";
@@ -26,9 +26,10 @@ export class App extends React.Component {
 
                     <div className="App_component container">
                         <Switch>
-                            <Route exact path="/albums/:albumId" component={Gallery}/>
-                            <Route exact path="/all" render={() => <Gallery showAll/>}/>
-                            <Route path="/photos/:photoId" component={ImageView}/>
+                            <Route exact path="/users" component={UsersView}/>
+                            <Route exact path="/albums/:albumId" component={GalleryView}/>
+                            <Route exact path="/all" render={() => <GalleryView showAll/>}/>
+                            <Route exact path="/photos/:photoId" component={ImageView}/>
                         </Switch>
                     </div>
                 </div>

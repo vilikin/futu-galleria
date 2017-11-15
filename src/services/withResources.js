@@ -112,7 +112,6 @@ export const withResources = (requestedResources, options = defaultOptions) => {
 
                 if (JSON.stringify(nextRequestedResources) !== JSON.stringify(previousRequestedResources)) {
                     this.resources = nextRequestedResources;
-                    console.log("modification!");
                     this.fetchRequestedResources();
                 }
             }

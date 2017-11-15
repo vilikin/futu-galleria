@@ -11,6 +11,7 @@ import ImageView from "../ImageView/ImageView";
 import NavBar from "../NavBar/NavBar";
 import {albums, users} from "../../store/resources";
 import {fetchResource} from "../../store/actions";
+import UsersView from "../UsersView/UsersView";
 
 const store = createEnhancedStore();
 
@@ -26,7 +27,7 @@ export class App extends React.Component {
 
                     <div className="App_component container">
                         <Switch>
-                            <Route exact path="/users" component={UsersView}/>
+                            <Route exact path="/" component={UsersView}/>
                             <Route exact path="/albums/:albumId" component={GalleryView}/>
                             <Route exact path="/all" render={() => <GalleryView showAll/>}/>
                             <Route exact path="/photos/:photoId" component={ImageView}/>

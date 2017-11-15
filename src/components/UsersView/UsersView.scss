@@ -1,0 +1,48 @@
+@import '../../styles/colors';
+
+.users-view {
+  .user {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+    cursor: pointer;
+
+    .photo {
+      background-image: url('http://www.planystech.com/wp-content/uploads/2017/03/profile-placeholder.jpg');
+      background-size: contain;
+      width: 100px;
+      height: 100px;
+      margin-right: 30px;
+    }
+
+    .details {
+      flex: 1;
+      font-family: "Francois One", sans-serif;
+
+      .username {
+        display: block;
+        font-size: 20px;
+      }
+
+      .name {
+        display: block;
+        font-size: 16px;
+      }
+    }
+
+    .arrow {
+      font-size: 36px;
+      margin-right: 10px;
+      color: mix($color_primary, white);
+      transition: transform 0.2s;
+    }
+  }
+
+  .user:hover > .arrow {
+    color: $color_primary;
+    transform: translate(5px, 0)
+  }
+}

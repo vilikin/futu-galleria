@@ -24,16 +24,20 @@ class UserProfileView extends React.Component {
 
             <h3>Albums</h3>
 
+            <div className="albums">
             {
                 albums.map(album => (
-                    <Link to={"/albums/" + album.id} key={album.id}>
-                        <div className="album">
-                            <span className="icon glyphicon glyphicon-folder-open"/>
-                            {album.title}
-                        </div>
+                    <Link to={"/albums/" + album.id}
+                          key={album.id}
+                          className="album">
+                        <span className="icon glyphicon glyphicon-folder-open"/>
+                        {album.title}
                     </Link>
                 ))
             }
+            </div>
+
+            <hr/>
 
             <div className="links">
                 <Link to="/" className="button">

@@ -2,6 +2,7 @@ import React from 'react';
 import {users} from "../../store/resources";
 import {withResources} from "../../services/withResources";
 import './UsersView.scss';
+import {Link} from "react-router-dom";
 
 class UsersView extends React.Component {
     viewUser(userId) {
@@ -27,6 +28,12 @@ class UsersView extends React.Component {
                     </div>
                 ))
             }
+
+            <div className="links">
+                <Link to="/all" className="button">
+                    View all photos
+                </Link>
+            </div>
         </div>
     }
 }

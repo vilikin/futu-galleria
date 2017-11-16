@@ -1,5 +1,5 @@
 import React from 'react';
-import {HashRouter, Link, Route, Switch} from 'react-router-dom';
+import {HashRouter, Route, Switch} from 'react-router-dom';
 
 import './App.scss';
 import {Provider} from "react-redux";
@@ -9,8 +9,6 @@ import GalleryView from "../GalleryView/GalleryView";
 import {createEnhancedStore} from '../../store/init';
 import ImageView from "../ImageView/ImageView";
 import NavBar from "../NavBar/NavBar";
-import {albums, users} from "../../store/resources";
-import {fetchResource} from "../../store/actions";
 import UsersView from "../UsersView/UsersView";
 import UserProfileView from "../UserProfileView/UserProfileView";
 

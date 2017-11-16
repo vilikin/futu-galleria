@@ -4,7 +4,6 @@ import {singlePhoto} from "../../store/resources";
 import PropTypes from 'prop-types';
 
 import './ImageView.scss';
-import {Link} from "react-router-dom";
 
 class ImageView extends React.Component {
     render() {

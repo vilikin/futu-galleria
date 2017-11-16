@@ -9,7 +9,7 @@ export const photosFromAlbum = (albumId) => ({
     id: 'photos_of_album_' + albumId,
 
     // Makes resource behave like a paginated list, allowing path to
-    // contain {page}, which is going to be replaced by page number
+    // contain {page}, which is going to be replaced by a page number
     pagination: true
 });
 
